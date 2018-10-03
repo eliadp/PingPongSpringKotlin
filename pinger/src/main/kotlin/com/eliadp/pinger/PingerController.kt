@@ -17,7 +17,10 @@ class PingerController {
 
     @PostMapping("/table")
     fun pong(): String {
-        Fuel.post(pongerRoute).response()
+        val request = Fuel.post(pongerRoute).body("{ \"message\" : \"Ping\" }")
+        request.headers["Content-Type"] = "application/json"
+        request.response()
+
         println("Pong received...")
         return "Pong received..."
     }

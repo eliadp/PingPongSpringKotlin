@@ -1,6 +1,7 @@
 package com.eliadp.ponger
 
 import com.github.kittinunf.fuel.Fuel
+import com.google.gson.Gson
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -16,9 +17,10 @@ class PongerController {
     }
 
     @PostMapping("/table")
-    fun ping(): String {
+    fun ping(@RequestBody message : String): String {
         Fuel.post(pingerRoute).response()
-        println("Ping received...")
-        return "Ping received..."
+        val messageValue = Gson().fromJson(message, String::class.java)
+        println("$message received...")
+        return "$message received..."
     }
 }
