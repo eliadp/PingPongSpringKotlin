@@ -9,9 +9,15 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class PingerController {
 
-    @RequestMapping("/ping")
-    fun ping(): String {
-        Fuel.get("http://localhost:8081/pong").response()
+    var pongerRoute: String = ""
+    fun setPongerRoute(value: String): PingerController {
+        pongerRoute = value
+        return this
+    }
+
+    @PostMapping("/table")
+    fun pong(): String {
+        Fuel.post(pongerRoute).response()
         println("Pong received...")
         return "Pong received..."
     }

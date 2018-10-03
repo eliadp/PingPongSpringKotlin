@@ -5,6 +5,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
+
+const val PINGER_ROUTE = "http://localhost:8080/table"
+
+
 /**
  * The main entry point to the Ponger application.
  */
@@ -12,7 +16,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 internal class PongerApplication {
     @Bean
-    fun controller() = PongerController()
+    fun controller() = PongerController().setPingerRoute(PINGER_ROUTE)
 }
 
 /**

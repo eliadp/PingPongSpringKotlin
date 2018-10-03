@@ -6,6 +6,10 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 
+
+const val PONGER_ROUTE = "http://localhost:8081/table"
+
+
 /**
  * The main entry point to the Pinger application.
  */
@@ -13,7 +17,7 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 internal class PingerApplication {
     @Bean
-    fun controller() = PingerController()
+    fun controller() = PingerController().setPongerRoute(PONGER_ROUTE)
 }
 
 /**
@@ -23,5 +27,5 @@ internal class PingerApplication {
 fun main(args: Array<String>) {
     SpringApplication.run(PingerApplication::class.java, *args)
 
-    Fuel.get("http://localhost:8081/pong").response()
+    Fuel.post(PONGER_ROUTE).response()
 }
