@@ -27,7 +27,7 @@ internal class PingerApplication {
 fun main(args: Array<String>) {
     SpringApplication.run(PingerApplication::class.java, *args)
 
-    val request = Fuel.post(PONGER_ROUTE).body("{ \"message\" : \"Ping\" }")
+    val request = Fuel.post(PONGER_ROUTE).body("{ \"value\" : \"Ping\" }")
     request.headers["Content-Type"] = "application/json"
     request.response()
 }

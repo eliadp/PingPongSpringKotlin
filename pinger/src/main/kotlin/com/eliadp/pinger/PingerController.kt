@@ -1,5 +1,6 @@
 package com.eliadp.pinger
 
+import com.eliadp.core.Message
 import com.github.kittinunf.fuel.Fuel
 import org.springframework.web.bind.annotation.*
 
@@ -16,12 +17,12 @@ class PingerController {
     }
 
     @PostMapping("/table")
-    fun pong(): String {
-        val request = Fuel.post(pongerRoute).body("{ \"message\" : \"Ping\" }")
+    fun pong(@RequestBody message : Message): String {
+        val request = Fuel.post(pongerRoute).body("{ \"value\" : \"Ping\" }")
         request.headers["Content-Type"] = "application/json"
         request.response()
 
-        println("Pong received...")
-        return "Pong received..."
+        println("${message.value} received...")
+        return "${message.value} received..."
     }
 }

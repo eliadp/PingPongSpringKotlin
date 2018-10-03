@@ -1,4 +1,5 @@
 rootProject.name = 'pingpongspringkotlin'
 
+include 'core'
 include 'pinger'
 include 'ponger'
