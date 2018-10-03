@@ -2,6 +2,7 @@ package com.eliadp.ponger
 
 import com.eliadp.core.Message
 import com.github.kittinunf.fuel.Fuel
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 /**
@@ -17,12 +18,13 @@ class PongerController {
     }
 
     @PostMapping("/table")
-    fun ping(@RequestBody message : Message): String {
+    fun ping(@RequestBody message : Message): ResponseEntity<String> {
         val request = Fuel.post(pingerRoute).body("{ \"value\" : \"Pong\" }")
         request.headers["Content-Type"] = "application/json"
         request.response()
 
         println("${message.value} received...")
-        return "${message.value} received..."
+
+        return ResponseEntity.ok().body("${message.value} received...")
     }
 }
